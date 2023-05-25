@@ -53,6 +53,18 @@ public class CurrentAccount extends BankAccount{
         if(ch[max]>Math.ceil(len/2))
             throw new RuntimeException("Valid License can not be generated");
 
+        char val[] = new char[len];
+
+        int ind = 0;
+        for(int i=0;i<26;i++){
+            while(ch[i]>0){
+                val[ind] = (char)('A'+i);
+                ind +=2;
+                ch[i]--;
+                if(ind>=len)ind = 1;
+            }
+        }
+        tradeLicenseId = new String(val);
     }
 
 }
