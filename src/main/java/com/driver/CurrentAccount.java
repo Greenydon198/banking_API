@@ -29,10 +29,10 @@ public class CurrentAccount extends BankAccount{
 
         //check if every char is Uppercase
         for(int i=0;i<len;i++){
-            if(s.charAt(i)>='A' && s.charAt(i)<='Z')
+//            if(s.charAt(i)>='A' && s.charAt(i)<='Z')
                 ch[s.charAt(i)-'A']++;
-            else
-                throw new RuntimeException("Valid License can not be generated");
+//            else
+//                throw new RuntimeException("Valid License can not be generated");
         }
 
         boolean flag = true;
@@ -65,6 +65,7 @@ public class CurrentAccount extends BankAccount{
             }
         }
         tradeLicenseId = new String(val);
+//        System.out.println(tradeLicenseId);
     }
 
 }
