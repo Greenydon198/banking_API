@@ -4,8 +4,10 @@ public class CurrentAccount extends BankAccount{
     String tradeLicenseId; //consists of Uppercase English characters only
 
     public CurrentAccount(String name, double balance, String tradeLicenseId) throws Exception {
-        // minimum balance is 5000 by default. If balance is less than 5000, throw "Insufficient Balance" exception
-
+        // minimum balance is 5000 by default. If balance is less than 5000, throw "Insufficient Balance" exception\
+        super(name,balance,5000);
+        this.tradeLicenseId = tradeLicenseId;
+        validateLicenseId();
     }
 
     public void validateLicenseId() throws Exception {
@@ -13,6 +15,35 @@ public class CurrentAccount extends BankAccount{
         // If the license Id is valid, do nothing
         // If the characters of the license Id can be rearranged to create any valid license Id
         // If it is not possible, throw "Valid License can not be generated" Exception
+        String s = tradeLicenseId;
+        int len = s.length();
+        int ch[] = new int[26];
+
+        //check if every char is Uppercase
+        for(int i=0;i<len;i++){
+            if(s.charAt(i)>='A' && s.charAt(i)<='Z')
+                ch[s.charAt(i)-'A']++;
+            else
+                throw new RuntimeException("Valid License can not be generated");
+        }
+
+        boolean flag = true;
+
+        for(int i=1;i<len;i++){
+            if(s.charAt(i)==s.charAt(i-1)){
+                flag = false;
+                break;
+            }
+        }
+        //if(no consecutive characters are present) return
+        if(flag)return;
+        int max = 0;
+        for(int i=0;i<26;i++){
+            if(ch[i]>ch[max])
+                max = i;
+        }
+        if(ch[max]>Math.ceil(len/2))
+            throw new RuntimeException("Valid License can not be generated");
 
     }
 
