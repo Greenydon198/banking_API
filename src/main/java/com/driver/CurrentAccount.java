@@ -50,12 +50,18 @@ public class CurrentAccount extends BankAccount{
             if(ch[i]>ch[max])
                 max = i;
         }
-        if(ch[max]>Math.ceil(len/2))
+        if(ch[max]>Math.ceil(len/2.0))
             throw new RuntimeException("Valid License can not be generated");
 
         char val[] = new char[len];
 
         int ind = 0;
+        while(ch[max]>0){
+            val[ind] = (char)('A'+max);
+            ind +=2;
+            ch[max]--;
+            if(ind>=len)ind = 1;
+        }
         for(int i=0;i<26;i++){
             while(ch[i]>0){
                 val[ind] = (char)('A'+i);
